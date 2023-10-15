@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\AbsValueSC.cpp" />
     <ClCompile Include="src\BoothFunction.cpp" />
     <ClCompile Include="src\DeterministicOptimizer.cpp" />
