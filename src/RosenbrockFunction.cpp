@@ -10,14 +10,14 @@ RosenbrockFunction::~RosenbrockFunction()
 
 }
 
-double RosenbrockFunction::eval(const VectorXd& x) const
+double RosenbrockFunction::eval(const Vector& x) const
 {
     return 100 * (x[1] - x[0] * x[0]) * (x[1] - x[0] * x[0]) + (1 - x[0]) * (1 - x[0]);
 }
 
-VectorXd RosenbrockFunction::grad(const VectorXd& x) const
+Vector RosenbrockFunction::grad(const Vector& x) const
 {
-    VectorXd g(2);
+    Vector g(2);
     g[0] = 2 * (-1 + x[0] + 200 * x[0] * x[0] * x[0] - 200 * x[0] * x[1]);
     g[1] = 200 * (x[1] - x[0] * x[0]);
     return g;

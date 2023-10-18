@@ -10,23 +10,22 @@ Function::~Function()
 
 }
 
-VectorXd Function::hessian_approx(const VectorXd& x, int i) const
+Vector Function::hessian_approx(const Vector& x, int i) const
 {
-	//double eps = sqrt(std::numeric_limits<double>::epsilon()) * std::fabs(x[i]);
-	double eps = 1e-5;
-	VectorXd x_more = x, x_less = x;
-	x_more[i] += eps;
-	x_less[i] -= eps;
-	return (grad(x_more) - grad(x_less)) / (2 * eps);
+	double h = 1e-5;
+	Vector x_more = x, x_less = x;
+	x_more[i] += h;
+	x_less[i] -= h;
+	return (grad(x_more) - grad(x_less)) / (2 * h);
 }
 
-MatrixXd Function::hessian_approx(const VectorXd& x) const
+Matrix Function::hessian_approx(const Vector& x) const
 {
-	MatrixXd hess = MatrixXd::Zero(x.size(), x.size());
-	for (int i = 0; i < x.size(); ++i) {
-		hess.col(i) = hessian_approx(x, i);
+	Matrix h(x.size(), x.size());
+	for (size_t i{}; i < x.size(); ++i) {
+		h(i) = (hessian_approx(x, i));
 	}
-	return hess;
+	return h;
 }
 
 size_t Function::dim() const

@@ -10,7 +10,7 @@ AbsValueSC::~AbsValueSC()
 
 }
 
-bool AbsValueSC::condition(const Function* f, const std::vector<VectorXd>& trajectory) const
+bool AbsValueSC::condition(const Function* f, const std::vector<Vector>& trajectory) const
 {
-    return trajectory.size() < n && f->grad(trajectory.back()).norm() > epsilon;
+    return trajectory.size() - 1 < n && f->grad(trajectory.back()).norm() > epsilon;
 }

@@ -10,7 +10,7 @@ Optimizer::~Optimizer()
 
 }
 
-void Optimizer::optimize(const VectorXd& start_point)
+void Optimizer::optimize(const Vector& start_point)
 {
 	set_start(start_point);
 	trajectory.push_back(start_point);
@@ -34,7 +34,7 @@ void Optimizer::set_criterion(StopCriterion* _criterion)
 	trajectory.shrink_to_fit();
 }
 
-void Optimizer::set_cubic_domain(const VectorXd& min_point, const VectorXd& max_point)
+void Optimizer::set_cubic_domain(const Vector& min_point, const Vector& max_point)
 {
 	cubic_domain.first = min_point;
 	cubic_domain.second = max_point;
@@ -44,12 +44,12 @@ void Optimizer::set_default_cubic_domain()
 {
 	trajectory.clear();
 	trajectory.shrink_to_fit();
-	VectorXd min_point = VectorXd::Constant(f->dim(), -1),
-		max_point = VectorXd::Constant(f->dim(), 1);
-	/*for (int i = 0; i < f->dim(); ++i)
-	{
-		min_point[i] = -1;
-		max_point[i] = 1;
-	}*/
+	Vector min_point(f->dim(), 1),
+		max_point(f->dim(), 1);
 	cubic_domain = std::make_pair(min_point, max_point);
+}
+
+void Optimizer::set_start(const Vector& start_point)
+{
+	current_point = start_point;
 }

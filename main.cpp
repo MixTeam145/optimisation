@@ -1,25 +1,22 @@
 #include <iostream>
 #include "Optimizer.h"
 #include "DeterministicOptimizer.h"
+#include "StochasticOptimizer.h"
 #include "BoothFunction.h"
 #include "McCormickFunction.h"
 #include "RosenbrockFunction.h"
 #include "AbsValueSC.h"
 #include "NumIterSC.h"
 
-using Eigen::Vector2d;
- 
 int main()
 {
 	Function* f = new McCormickFunction;
 	std::cout << f->print_function() << '\n';
-	StopCriterion* criterion = new AbsValueSC();
+	StopCriterion* criterion = new AbsValueSC(1e+4, 1e-4);
 	Optimizer* optim = new DeterministicOptimizer(f, criterion);
-	Vector2d a(-1.5, -3), b(4, 4);
-	optim->set_cubic_domain(a, b);
-	Vector2d p(-1, 0.5);
-	optim->optimize(p);
-	std::vector<VectorXd> traj = optim->get_trajectory();
+	optim->set_cubic_domain({ -1.5, -3 }, {4, 4});
+	optim->optimize({-1, 0.5});
+	std::vector<Vector> traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1<<
 		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
 		"\nFunction value: " << f->eval(traj.back()) << "\n\n";
@@ -29,11 +26,8 @@ int main()
 	f = new BoothFunction;
 	std::cout << f->print_function() << '\n';
 	optim->set_f(f);
-	a << -10, -10;
-	b << 10, 10;
-	optim->set_cubic_domain(a, b);
-	p << -10, -10;
-	optim->optimize(p);
+	optim->set_cubic_domain({-10, -10}, {10, 10});
+	optim->optimize({-10, -10});
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
 		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
@@ -44,13 +38,26 @@ int main()
 	f = new RosenbrockFunction;
 	std::cout << f->print_function() << '\n';
 	optim->set_f(f);
-	a << -1.5, -1.5;
-	b << 1.5, 1.5;
-	optim->set_cubic_domain(a, b);
-	p << -1, -1;
-	optim->optimize(p);
+	optim->set_cubic_domain({-1.5, -1.5}, {1.5, 1.5});
+	optim->optimize({-1, -1});
+	traj = optim->get_trajectory();
+	std::cout << "Number of iterations: " << traj.size() - 1 <<
+		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
+		"\nFunction value: " << f->eval(traj.back()) << "\n\n";
+
+	delete optim;
+
+	std::cout << "Stochastic optimization:\n";
+	optim = new StochasticOptimizer(f, criterion, 0.4, 2, 0.5, 0);
+	optim->set_cubic_domain({ -1.5, -1.5 }, { 1.5, 1.5 });
+	optim->optimize({ -1, -1 });
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
 		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
 		"\nFunction value: " << f->eval(traj.back()) << '\n';
+
+	Vector vec{ 3, 2 };
+	std::cout << vec[0] << vec[1] << vec[2];
+
+	return 0;
 }
