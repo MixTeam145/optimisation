@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Optimizer.h"
 #include "DeterministicOptimizer.h"
 #include "StochasticOptimizer.h"
 #include "BoothFunction.h"
@@ -10,6 +9,8 @@
 
 int main()
 {
+	std::cout << "Deterministic optimization:\n\n";
+
 	Function* f = new McCormickFunction;
 	std::cout << f->print_function() << '\n';
 	StopCriterion* criterion = new AbsValueSC(1e+4, 1e-4);
@@ -47,7 +48,9 @@ int main()
 
 	delete optim;
 
-	std::cout << "Stochastic optimization:\n";
+	std::cout << "Stochastic optimization:\n\n";
+
+	std::cout << f->print_function() << '\n';
 	optim = new StochasticOptimizer(f, criterion, 0.4, 2, 0.5, 0);
 	optim->set_cubic_domain({ -1.5, -1.5 }, { 1.5, 1.5 });
 	optim->optimize({ -1, -1 });
@@ -55,9 +58,6 @@ int main()
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
 		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
 		"\nFunction value: " << f->eval(traj.back()) << '\n';
-
-	Vector vec{ 3, 2 };
-	std::cout << vec[0] << vec[1] << vec[2];
 
 	return 0;
 }
