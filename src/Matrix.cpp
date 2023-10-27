@@ -10,7 +10,7 @@ Matrix::Matrix(size_t nrow, size_t ncol) : container(std::vector<Vector>(nrow, V
 
 }
 
-Matrix::Matrix(const std::vector<Vector>& _container) : container(_container)
+Matrix::Matrix(const std::vector<Vector>& container) : container(container)
 {
 
 }

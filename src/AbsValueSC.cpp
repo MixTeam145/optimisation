@@ -1,6 +1,6 @@
 #include "AbsValueSC.h"
 
-AbsValueSC::AbsValueSC(size_t _n, double _epsilon): StopCriterion(_n), epsilon(_epsilon)
+AbsValueSC::AbsValueSC(size_t n, double epsilon): StopCriterion(n), epsilon(epsilon)
 {
 
 }

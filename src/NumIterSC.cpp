@@ -1,6 +1,6 @@
 #include "NumIterSC.h"
 
-NumIterSC::NumIterSC(size_t _n) : StopCriterion(_n)
+NumIterSC::NumIterSC(size_t n) : StopCriterion(n)
 {
 
 }

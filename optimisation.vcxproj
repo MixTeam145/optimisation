@@ -28,6 +28,7 @@
     <ClCompile Include="src\McCormickFunction.cpp" />
     <ClCompile Include="src\NumIterSC.cpp" />
     <ClCompile Include="src\Optimizer.cpp" />
+    <ClCompile Include="src\RectArea.cpp" />
     <ClCompile Include="src\RosenbrockFunction.cpp" />
     <ClCompile Include="src\StochasticOptimizer.cpp" />
     <ClCompile Include="src\StopCriterion.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="include\McCormickFunction.h" />
     <ClInclude Include="include\NumIterSC.h" />
     <ClInclude Include="include\Optimizer.h" />
+    <ClInclude Include="include\RectArea.h" />
     <ClInclude Include="include\RosenbrockFunction.h" />
     <ClInclude Include="include\StochasticOptimizer.h" />
     <ClInclude Include="include\StopCriterion.h" />

@@ -1,8 +1,8 @@
 #include "Optimizer.h"
 
-Optimizer::Optimizer(Function* _f, StopCriterion* _criterion) : f(_f), criterion(_criterion)
+Optimizer::Optimizer(Function* f, StopCriterion* criterion) : f(f), criterion(criterion)
 {
-	set_default_cubic_domain();
+	set_default_domain();
 }
 
 Optimizer::~Optimizer()
@@ -20,33 +20,30 @@ void Optimizer::optimize(const Vector& start_point)
 	}
 }
 
-void Optimizer::set_f(Function* _f)
+void Optimizer::set_f(Function* new_f)
 {
-	f = _f;
+	f = new_f;
 	trajectory.clear();
 	trajectory.shrink_to_fit();
 }
 
-void Optimizer::set_criterion(StopCriterion* _criterion)
+void Optimizer::set_criterion(StopCriterion* new_criterion)
 {
-	criterion = _criterion;
+	criterion = new_criterion;
 	trajectory.clear();
 	trajectory.shrink_to_fit();
 }
 
-void Optimizer::set_cubic_domain(const Vector& min_point, const Vector& max_point)
+void Optimizer::set_domain(const Vector& min_point, const Vector& max_point)
 {
-	cubic_domain.first = min_point;
-	cubic_domain.second = max_point;
+	domain.set_area(min_point, max_point);
 }
 
-void Optimizer::set_default_cubic_domain()
+void Optimizer::set_default_domain()
 {
 	trajectory.clear();
 	trajectory.shrink_to_fit();
-	Vector min_point(f->dim(), 1),
-		max_point(f->dim(), 1);
-	cubic_domain = std::make_pair(min_point, max_point);
+	domain.set_area(Vector(f->dim(), -1), Vector(f->dim(), 1));
 }
 
 void Optimizer::set_start(const Vector& start_point)

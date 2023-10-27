@@ -1,6 +1,6 @@
 #include "DeterministicOptimizer.h"
 
-DeterministicOptimizer::DeterministicOptimizer(Function* _f, StopCriterion* _criterion) : Optimizer(_f, _criterion)
+DeterministicOptimizer::DeterministicOptimizer(Function* f, StopCriterion* criterion) : Optimizer(f, criterion)
 {
 
 }
@@ -12,17 +12,17 @@ DeterministicOptimizer::~DeterministicOptimizer()
 
 double DeterministicOptimizer::max_direction_magnitude() const
 {
-	double magnitude = ((newton_direction[0] >= 0 ? cubic_domain.second[0] : cubic_domain.first[0]) - current_point[0]) / newton_direction[0];
+	double magnitude = ((newton_direction[0] >= 0 ? domain.max_point[0] : domain.min_point[0]) - current_point[0]) / newton_direction[0];
 	for (int i = 1; i < newton_direction.size(); ++i)
 	{
-		double tm = ((newton_direction[0] >= 0 ? cubic_domain.second[i] : cubic_domain.first[i]) - current_point[0]) / newton_direction[0];
+		double tm = ((newton_direction[0] >= 0 ? domain.max_point[i] : domain.min_point[i]) - current_point[0]) / newton_direction[0];
 		if (magnitude > tm)
 			magnitude = tm;
 	}
 	return magnitude;
 }
 
-double DeterministicOptimizer::one_dim_optimization(const double left_border, const double right_border, const double eps) const
+double DeterministicOptimizer::one_dim_optimization(double left_border, double right_border, double eps) const
 {
 	double l = left_border, r = right_border;
 	for (int i = 0; r - l > eps; ++i)

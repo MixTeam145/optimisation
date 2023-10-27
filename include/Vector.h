@@ -7,8 +7,8 @@ public:
 	Vector();
 	Vector(size_t n);
 	Vector(size_t n, double val);
-	Vector(const std::initializer_list<double> _list);
-	Vector(const std::vector<double>& _container);
+	Vector(const std::initializer_list<double> list);
+	Vector(const std::vector<double>& container);
 	std::vector<double>::iterator begin();
 	std::vector<double>::iterator end();
 	void resize(size_t n);

@@ -4,7 +4,7 @@
 class Function
 {
 public:
-	Function(size_t _d);
+	Function(size_t d);
 	virtual ~Function();
 	virtual double eval(const Vector& x) const = 0;
 	virtual Vector grad(const Vector& x) const = 0;

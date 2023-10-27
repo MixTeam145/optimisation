@@ -15,7 +15,7 @@ int main()
 	std::cout << f->print_function() << '\n';
 	StopCriterion* criterion = new AbsValueSC(1e+4, 1e-4);
 	Optimizer* optim = new DeterministicOptimizer(f, criterion);
-	optim->set_cubic_domain({ -1.5, -3 }, {4, 4});
+	optim->set_domain({ -1.5, -3 }, {4, 4});
 	optim->optimize({-1, 0.5});
 	std::vector<Vector> traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1<<
@@ -27,7 +27,7 @@ int main()
 	f = new BoothFunction;
 	std::cout << f->print_function() << '\n';
 	optim->set_f(f);
-	optim->set_cubic_domain({-10, -10}, {10, 10});
+	optim->set_domain({-10, -10}, {10, 10});
 	optim->optimize({-10, -10});
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
@@ -39,7 +39,7 @@ int main()
 	f = new RosenbrockFunction;
 	std::cout << f->print_function() << '\n';
 	optim->set_f(f);
-	optim->set_cubic_domain({-1.5, -1.5}, {1.5, 1.5});
+	optim->set_domain({-1.5, -1.5}, {1.5, 1.5});
 	optim->optimize({-1, -1});
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
@@ -52,7 +52,7 @@ int main()
 
 	std::cout << f->print_function() << '\n';
 	optim = new StochasticOptimizer(f, criterion, 0.4, 2, 0.5, 0);
-	optim->set_cubic_domain({ -1.5, -1.5 }, { 1.5, 1.5 });
+	optim->set_domain({ -1.5, -1.5 }, { 1.5, 1.5 });
 	optim->optimize({ -1, -1 });
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<

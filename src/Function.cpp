@@ -1,6 +1,6 @@
 #include "Function.h"
 
-Function::Function(size_t _d) : d(_d)
+Function::Function(size_t d) : d(d)
 {
 
 }
@@ -23,7 +23,7 @@ Matrix Function::hessian_approx(const Vector& x) const
 {
 	Matrix h(x.size(), x.size());
 	for (size_t i{}; i < x.size(); ++i) {
-		h(i) = (hessian_approx(x, i));
+		h(i) = hessian_approx(x, i);
 	}
 	return h;
 }

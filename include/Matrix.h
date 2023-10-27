@@ -6,7 +6,7 @@ class Matrix
 public:
 	Matrix();
 	Matrix(size_t nrow, size_t ncol);
-	Matrix(const std::vector<Vector>& _container);
+	Matrix(const std::vector<Vector>& container);
 	size_t size() const;
 	Vector& operator()(size_t i);
 	const Vector& operator()(size_t i) const;
