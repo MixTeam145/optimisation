@@ -112,3 +112,13 @@ double operator*(const Vector& v1, const Vector& v2)
 	return dp;
 }
 
+std::ostream& operator<<(std::ostream& os, const Vector& v)
+{
+	os << '(';
+	for (size_t i{}; i < v.size() - 1; ++i) {
+		os << v[i] << ", ";
+	}
+	os << v[v.size() - 1] << ')';
+	return os;
+}
+

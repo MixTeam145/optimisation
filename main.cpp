@@ -19,7 +19,7 @@ int main()
 	optim->optimize({-1, 0.5});
 	std::vector<Vector> traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1<<
-		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
+		"\nApproximate local mimimum: " << traj.back() <<
 		"\nFunction value: " << f->eval(traj.back()) << "\n\n";
 
 	delete f;
@@ -31,7 +31,7 @@ int main()
 	optim->optimize({-10, -10});
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
-		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
+		"\nApproximate local mimimum: " << traj.back() <<
 		"\nFunction value: " << f->eval(traj.back()) << "\n\n";
 
 	delete f;
@@ -43,7 +43,7 @@ int main()
 	optim->optimize({-1, -1, -1});
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
-		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << traj.back()[2] << ")" <<
+		"\nApproximate local mimimum: " << traj.back() <<
 		"\nFunction value: " << f->eval(traj.back()) << "\n\n";
 
 	delete optim;
@@ -59,7 +59,7 @@ int main()
 	optim->optimize({ -1, -1 });
 	traj = optim->get_trajectory();
 	std::cout << "Number of iterations: " << traj.size() - 1 <<
-		"\nApproximate local mimimum: (" << traj.back()[0] << ", " << traj.back()[1] << ")" <<
+		"\nApproximate local mimimum: " << traj.back() <<
 		"\nFunction value: " << f->eval(traj.back()) << '\n';
 
 	return 0;

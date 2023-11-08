@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 
 class Vector
 {
@@ -23,6 +24,7 @@ public:
 	friend Vector operator/(const Vector& v, double alpha);
 	friend Vector operator-(const Vector& v1, const Vector& v2);
 	friend double operator*(const Vector& v1, const Vector& v2);
+	friend std::ostream& operator<<(std::ostream& os, const Vector& v);
 private:
 	std::vector<double> container;
 };
