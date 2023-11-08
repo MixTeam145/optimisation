@@ -3,7 +3,7 @@
 class RosenbrockFunction : public Function
 {
 public:
-	RosenbrockFunction();
+	RosenbrockFunction(size_t d = 2);
 	~RosenbrockFunction();
 	double eval(const Vector& x) const override;
 	Vector grad(const Vector& x) const override;
