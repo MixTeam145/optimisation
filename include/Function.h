@@ -11,7 +11,7 @@ public:
 	Vector hessian_approx(const Vector& x, int i) const;
 	Matrix hessian_approx(const Vector& x) const;
 	size_t dim() const;
-	virtual const char* print_function() const = 0;
+	virtual void print_function(std::ostream& os = std::cout) const = 0;
 protected:
 	size_t d;
 };

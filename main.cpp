@@ -12,7 +12,7 @@ int main()
 	std::cout << "Deterministic optimization:\n\n";
 
 	Function* f = new McCormickFunction;
-	std::cout << f->print_function() << '\n';
+	f->print_function();
 	StopCriterion* criterion = new AbsValueSC(1e+4, 1e-4);
 	Optimizer* optim = new DeterministicOptimizer(f, criterion);
 	optim->set_domain({ -1.5, -3 }, {4, 4});
@@ -25,7 +25,7 @@ int main()
 	delete f;
 
 	f = new BoothFunction;
-	std::cout << f->print_function() << '\n';
+	f->print_function();
 	optim->set_f(f);
 	optim->set_domain({-10, -10}, {10, 10});
 	optim->optimize({-10, -10});
@@ -37,7 +37,7 @@ int main()
 	delete f;
 
 	f = new RosenbrockFunction(3);
-	std::cout << f->print_function() << '\n';
+	f->print_function();
 	optim->set_f(f);
 	optim->set_domain({-1.5, -1.5, -1.5}, {1.5, 1.5, 1.5});
 	optim->optimize({-1, -1, -1});
@@ -53,7 +53,7 @@ int main()
 	delete f;
 
 	f = new RosenbrockFunction;
-	std::cout << f->print_function() << '\n';
+	f->print_function();
 	optim = new StochasticOptimizer(f, criterion, 0.4, 2, 0.5, 0);
 	optim->set_domain({ -1.5, -1.5 }, { 1.5, 1.5 });
 	optim->optimize({ -1, -1 });

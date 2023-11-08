@@ -36,9 +36,8 @@ Vector RosenbrockFunction::grad(const Vector& x) const
     //return g;
 }
 
-const char* RosenbrockFunction::print_function() const
+void RosenbrockFunction::print_function(std::ostream& os) const
 {
-    char buffer[2000];
-    sprintf_s(buffer, "f(x) = 100(x_2 - x_1^2)^2 + (1 - x_1)^2 + ... + 100(x_d - x_{d-1}^2)^2 + (1 - x_{d-1}), d = %zu", dim());
-    return buffer;
+    size_t d = dim();
+    os << "f(x) = 100(x_2 - x_1^2)^2 + (1 - x_1)^2 + ... + 100(x_" << d <<" - x_" << d - 1 << "^2)^2 + (1 - x_" << d - 1 <<")\n";
 }

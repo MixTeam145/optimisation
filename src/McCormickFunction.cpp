@@ -23,7 +23,7 @@ Vector McCormickFunction::grad(const Vector& x) const
 	return g;
 }
 
-const char* McCormickFunction::print_function() const
+void McCormickFunction::print_function(std::ostream& os) const
 {
-	return "f(x,y) = sin(x + y) + (x - y)^2 - 1.5x + 2.5y + 1";
+	os << "f(x,y) = sin(x + y) + (x - y)^2 - 1.5x + 2.5y + 1\n";
 }

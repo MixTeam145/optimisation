@@ -23,7 +23,7 @@ Vector BoothFunction::grad(const Vector& x) const
     return g;
 }
 
-const char* BoothFunction::print_function() const
+void BoothFunction::print_function(std::ostream& os) const
 {
-    return "f(x,y) = (x + 2y - 7)^2 + (2x + y - 5)^2";
+    os << "f(x,y) = (x + 2y - 7)^2 + (2x + y - 5)^2\n";
 }
