@@ -38,7 +38,7 @@ double DeterministicOptimizer::one_dim_optimization(double left_border, double r
 
 void DeterministicOptimizer::next_point()
 {
-	newton_direction = -1 * f->hessian_approx(current_point).inverse() * f->grad(current_point);
+	newton_direction = -1 * f->hessian_approx(current_point, domain).inverse() * f->grad(current_point);
 	double alpha = one_dim_optimization(0, max_direction_magnitude());
 	current_point += alpha * newton_direction;
 }
