@@ -32,3 +32,12 @@ size_t RectArea::dim() const
 {
 	return min_point.size();
 }
+
+bool RectArea::is_inside(const Vector& x) const
+{
+	for (size_t i{}; i < x.size(); ++i) {
+		if (x[i] > max_point[i] || x[i] < min_point[i])
+			return false;
+	}
+	return true;
+}
