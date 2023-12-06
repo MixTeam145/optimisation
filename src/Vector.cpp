@@ -122,3 +122,11 @@ std::ostream& operator<<(std::ostream& os, const Vector& v)
 	return os;
 }
 
+std::istream& operator>>(std::istream& is, Vector& v)
+{
+	for (size_t i{}; i < v.size(); ++i) {
+		is >> v[i];
+	}
+	return is;
+}
+

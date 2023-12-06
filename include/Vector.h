@@ -25,6 +25,6 @@ public:
 	friend Vector operator-(const Vector& v1, const Vector& v2);
 	friend double operator*(const Vector& v1, const Vector& v2);
 	friend std::ostream& operator<<(std::ostream& os, const Vector& v);
-private:
+	friend std::istream& operator>>(std::istream& is, Vector& v);
 	std::vector<double> container;
 };
