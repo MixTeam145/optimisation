@@ -13,16 +13,15 @@ RosenbrockFunction::~RosenbrockFunction()
 double RosenbrockFunction::eval(const Vector& x) const
 {
     double fvalue = 0;
-    for (size_t i{}; i < d - 1; ++i) {
+    for (size_t i{}; i < dim - 1; ++i) {
         fvalue += 100 * (x[i + 1] - x[i] * x[i]) * (x[i + 1] - x[i] * x[i]) + (1 - x[i]) * (1 - x[i]);
     }
     return fvalue;
-    //return 100 * (x[1] - x[0] * x[0]) * (x[1] - x[0] * x[0]) + (1 - x[0]) * (1 - x[0]);
 }
 
 Vector RosenbrockFunction::grad(const Vector& x) const
 {
-    size_t d = dim();
+    size_t d = get_dim();
     Vector g(d);
     g[0] = -400 * x[0] * (x[1] - x[0] * x[0]) + 2 * (x[0] - 1);
     g[d - 1] = 200 * (x[d - 1] - x[d - 2] * x[d - 2]);
@@ -38,6 +37,6 @@ Vector RosenbrockFunction::grad(const Vector& x) const
 
 void RosenbrockFunction::print_function(std::ostream& os) const
 {
-    size_t d = dim();
+    size_t d = get_dim();
     os << "f(x) = 100(x_2 - x_1^2)^2 + (1 - x_1)^2 + ... + 100(x_" << d <<" - x_" << d - 1 << "^2)^2 + (1 - x_" << d - 1 <<")\n";
 }

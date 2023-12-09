@@ -12,7 +12,7 @@ Optimizer::~Optimizer()
 
 void Optimizer::optimize(const Vector& start_point)
 {
-	set_start(start_point);
+	current_point = start_point;
 	trajectory.push_back(start_point);
 	while (criterion->condition(f, trajectory)) {
 		next_point();
@@ -43,10 +43,5 @@ void Optimizer::set_default_domain()
 {
 	trajectory.clear();
 	trajectory.shrink_to_fit();
-	domain.set_area(Vector(f->dim(), -1), Vector(f->dim(), 1));
-}
-
-void Optimizer::set_start(const Vector& start_point)
-{
-	current_point = start_point;
+	domain.set_area(Vector(f->get_dim(), -1), Vector(f->get_dim(), 1));
 }
