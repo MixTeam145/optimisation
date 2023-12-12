@@ -12,14 +12,18 @@ DeterministicOptimizer::~DeterministicOptimizer()
 
 double DeterministicOptimizer::max_direction_magnitude() const
 {
-	if (newton_direction.norm() < 1e-16)
-		return 0;
-	double magnitude = ((newton_direction[0] >= 0 ? domain.max_point[0] : domain.min_point[0]) - current_point[0]) / newton_direction[0];
-	for (int i = 1; i < newton_direction.size(); ++i)
-	{
-		double tm = ((newton_direction[0] >= 0 ? domain.max_point[i] : domain.min_point[i]) - current_point[0]) / newton_direction[0];
-		if (magnitude > tm)
-			magnitude = tm;
+	double magnitude = 0;
+	bool flag = true;
+	for (size_t i{}; i < newton_direction.size(); ++i) {
+		if (std::abs(newton_direction[i]) > 1e-16) {
+			if (!flag)
+				magnitude = std::min(magnitude,
+					((newton_direction[i] >= 0 ? domain.max_point[i] : domain.min_point[i]) - current_point[i]) / newton_direction[i]);
+			else {
+				magnitude = ((newton_direction[i] >= 0 ? domain.max_point[i] : domain.min_point[i]) - current_point[i]) / newton_direction[i];
+				flag = false;
+			}
+		}
 	}
 	return magnitude;
 }
@@ -27,8 +31,7 @@ double DeterministicOptimizer::max_direction_magnitude() const
 double DeterministicOptimizer::one_dim_optimization(double left_border, double right_border, double eps) const
 {
 	double l = left_border, r = right_border;
-	while (r - l > eps)
-	{
+	while (r - l > eps) {
 		double tl = (2 * l + r) / 3, tr = (l + 2 * r) / 3;
 		if (f->eval(current_point + tl * newton_direction) < f->eval(current_point + tr * newton_direction))
 			r = tr;
