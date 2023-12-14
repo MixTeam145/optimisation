@@ -10,7 +10,7 @@ NumIterSC::~NumIterSC()
 
 }
 
-bool NumIterSC::condition(const Function* f, const std::vector<Vector>& trajectory) const
+bool NumIterSC::condition(const Function* f, const std::vector<VectorXd>& trajectory) const
 {
     return trajectory.size() - 1 < n;
 }

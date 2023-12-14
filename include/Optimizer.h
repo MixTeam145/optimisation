@@ -1,7 +1,5 @@
 #pragma once
-#include "Function.h"
 #include "StopCriterion.h"
-#include "RectArea.h"
 
 /**
 * The abstract class for function optimizer
@@ -24,15 +22,15 @@ public:
 	* 
 	* \param start_point initial guess
 	*/
-	void optimize(const Vector& start_point);
+	void optimize(const VectorXd& start_point);
 
-	std::vector<Vector> get_trajectory() { return trajectory; }
+	std::vector<VectorXd> get_trajectory() { return trajectory; }
 
 	void set_f(Function* new_f);
 
 	void set_criterion(StopCriterion* new_criterion);
 
-	void set_domain(const Vector& min_point, const Vector& max_point);
+	void set_domain(const VectorXd& min_point, const VectorXd& max_point);
 
 	void set_default_domain();
 protected:
@@ -45,7 +43,7 @@ protected:
 	* Current iteration point
 	*/
 
-	Vector current_point;
+	VectorXd current_point;
 
 	/**
 	* Domain of the function
@@ -65,5 +63,5 @@ private:
 	/**
 	* Sequence of approximations
 	*/
-	std::vector<Vector> trajectory;
+	std::vector<VectorXd> trajectory;
 };

@@ -39,6 +39,6 @@ private:
 	/**
 	* The Newton direction
 	*/
-	Vector newton_direction;
+	VectorXd newton_direction;
 };
 

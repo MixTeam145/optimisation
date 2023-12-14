@@ -24,7 +24,6 @@
     <ClCompile Include="src\BoothFunction.cpp" />
     <ClCompile Include="src\DeterministicOptimizer.cpp" />
     <ClCompile Include="src\Function.cpp" />
-    <ClCompile Include="src\Matrix.cpp" />
     <ClCompile Include="src\McCormickFunction.cpp" />
     <ClCompile Include="src\NumIterSC.cpp" />
     <ClCompile Include="src\Optimizer.cpp" />
@@ -32,14 +31,12 @@
     <ClCompile Include="src\RosenbrockFunction.cpp" />
     <ClCompile Include="src\StochasticOptimizer.cpp" />
     <ClCompile Include="src\StopCriterion.cpp" />
-    <ClCompile Include="src\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AbsValueSC.h" />
     <ClInclude Include="include\BoothFunction.h" />
     <ClInclude Include="include\DeterministicOptimizer.h" />
     <ClInclude Include="include\Function.h" />
-    <ClInclude Include="include\Matrix.h" />
     <ClInclude Include="include\McCormickFunction.h" />
     <ClInclude Include="include\NumIterSC.h" />
     <ClInclude Include="include\Optimizer.h" />
@@ -47,7 +44,6 @@
     <ClInclude Include="include\RosenbrockFunction.h" />
     <ClInclude Include="include\StochasticOptimizer.h" />
     <ClInclude Include="include\StopCriterion.h" />
-    <ClInclude Include="include\Vector.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

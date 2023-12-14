@@ -21,14 +21,14 @@ public:
 	*
 	* \param x Point
 	*/
-	double eval(const Vector& x) const override;
+	double eval(const VectorXd& x) const override;
 
 	/**
 	* Calculates the gradient of the function at a given point
 	*
 	* \param x Point
 	*/
-	Vector grad(const Vector& x) const override;
+	VectorXd grad(const VectorXd& x) const override;
 
 	/**
 	* Prints the function to given output stream

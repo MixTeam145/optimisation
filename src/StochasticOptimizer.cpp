@@ -24,9 +24,9 @@ StochasticOptimizer::~StochasticOptimizer()
 
 }
 
-Vector StochasticOptimizer::random_point(const RectArea& cubic_area)
+VectorXd StochasticOptimizer::random_point(const RectArea& cubic_area)
 {
-	Vector res(cubic_area.dim());
+	VectorXd res(cubic_area.dim());
 	for (int i{}; i < res.size(); ++i)
 	{
 		std::uniform_real_distribution<double> d(cubic_area.min_point[i], cubic_area.max_point[i]);
@@ -37,10 +37,11 @@ Vector StochasticOptimizer::random_point(const RectArea& cubic_area)
 
 void StochasticOptimizer::next_point()
 {
-	Vector vdelta(current_point.size(), current_delta);
+	//VectorXd vdelta(current_point.size(), current_delta);
+	VectorXd vdelta = Eigen::VectorXd::Constant(current_point.size(), current_delta);
 	neighbourhood.set_area(current_point - vdelta, current_point + vdelta);
 	neighbourhood = domain.intersect(neighbourhood);
-	Vector temp;
+	VectorXd temp;
 	if (distr(generator) < probability)
 		temp = random_point(neighbourhood);
 	else

@@ -34,7 +34,7 @@ private:
 	* 
 	* \param cubic_area Range of the random variable
 	*/
-	Vector random_point(const RectArea& cubic_area);
+	VectorXd random_point(const RectArea& cubic_area);
 
 	/**
 	* Calculates the next approximation

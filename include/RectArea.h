@@ -1,5 +1,7 @@
 #pragma once
-#include "Vector.h"
+#include "Eigen/Dense"
+
+using namespace Eigen;
 
 /**
 * The rectangular area class
@@ -15,7 +17,7 @@ public:
 	* \param min_point Minimum point
 	* \param max_point Maximum point
 	*/
-	RectArea(const Vector& min_point, const Vector& max_point);
+	RectArea(const VectorXd& min_point, const VectorXd& max_point);
 
 	/**
 	* Sets the area with given minimum and maximum points
@@ -23,7 +25,7 @@ public:
 	* \param new_min New minimum point
 	* \param new_max New maximum point
 	*/
-	void set_area(const Vector& new_min, const Vector& new_max);
+	void set_area(const VectorXd& new_min, const VectorXd& new_max);
 
 	/**
 	* Finds intersection with area a
@@ -42,15 +44,15 @@ public:
 	* 
 	* \param x Point
 	*/
-	bool is_inside(const Vector& x) const;
+	bool is_inside(const VectorXd& x) const;
 
 	/**
 	* Minimum point of the area
 	*/
-	Vector min_point;
+	VectorXd min_point;
 
 	/**
 	* Maximum point of the area
 	*/
-	Vector max_point;
+	VectorXd max_point;
 };

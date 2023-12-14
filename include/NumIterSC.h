@@ -22,6 +22,6 @@ public:
 	* \param f Objective function
 	* \param trajectory Sequence of approximations
 	*/
-	bool condition(const Function* f, const std::vector<Vector>& trajectory) const override;
+	bool condition(const Function* f, const std::vector<VectorXd>& trajectory) const override;
 };
 

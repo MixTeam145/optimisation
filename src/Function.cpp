@@ -10,10 +10,10 @@ Function::~Function()
 
 }
 
-Vector Function::hessian_approx(const Vector& x, int i, const RectArea& a) const
+VectorXd Function::hessian_approx(const VectorXd& x, Index i, const RectArea& a) const
 {
 	double h = 1e-5;
-	Vector x_more = x, x_less = x;
+	VectorXd x_more = x, x_less = x;
 	x_more[i] += h;
 	x_less[i] -= h;
 	if (!a.is_inside(x_more))
@@ -23,11 +23,11 @@ Vector Function::hessian_approx(const Vector& x, int i, const RectArea& a) const
 	return (grad(x_more) - grad(x_less)) / (2 * h);
 }
 
-Matrix Function::hessian_approx(const Vector& x, const RectArea& a) const
+MatrixXd Function::hessian_approx(const VectorXd& x, const RectArea& a) const
 {
-	Matrix h(x.size(), x.size());
-	for (size_t i{}; i < x.size(); ++i) {
-		h(i) = hessian_approx(x, i, a);
+	MatrixXd h(x.size(), x.size());
+	for (Index i = 0; i < x.size(); ++i) {
+		h.row(i) = hessian_approx(x, i, a);
 	}
 	return h;
 }

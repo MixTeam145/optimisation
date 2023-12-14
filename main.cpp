@@ -143,24 +143,28 @@ int main()
 		} while (key != 1 && key != 2);
 
 		std::cout << "Enter cubic domain of the function (" << f->get_dim() << "-dimentional)\n";
-		Vector min_point(f->get_dim()), max_point(f->get_dim());
+		VectorXd min_point(f->get_dim()), max_point(f->get_dim());
 		std::cout << "Min point\n> ";
-		std::cin >> min_point;
+		for (Index i = 0; i < min_point.size(); ++i)
+			std::cin >> min_point[i];
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Max point\n> ";
-		std::cin >> max_point;
+		for (Index i = 0; i < max_point.size(); ++i)
+			std::cin >> max_point[i];
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		optimizer->set_domain(min_point, max_point);
 
 		std::cout << "Enter start point (" << f->get_dim() << "-dimentional)\n> ";
-		Vector start_point(f->get_dim());
-		std::cin >> start_point;
+		VectorXd start_point(f->get_dim());
+		for (Index i = 0; i < start_point.size(); ++i)
+			std::cin >> start_point[i];
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		optimizer->optimize(start_point);
 
-		std::vector<Vector> traj = optimizer->get_trajectory();
+		std::vector<VectorXd> traj = optimizer->get_trajectory();
+		const IOFormat fmt(StreamPrecision, 0, ", ", ", ", "", "", "(", ")");
 		std::cout << "Number of iterations: " << traj.size() - 1 <<
-			"\nApproximate local mimimum: " << traj.back() <<
+			"\nApproximate local mimimum: " << traj.back().format(fmt) <<
 			"\nFunction value: " << f->eval(traj.back()) << "\n\n";
 
 		delete optimizer;

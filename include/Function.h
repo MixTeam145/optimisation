@@ -1,5 +1,5 @@
 #pragma once
-#include "Matrix.h"
+#include <iostream>
 #include "RectArea.h"
 
 /**
@@ -22,14 +22,14 @@ public:
 	* 
 	* \param x Point
 	*/
-	virtual double eval(const Vector& x) const = 0;
+	virtual double eval(const VectorXd& x) const = 0;
 
 	/**
 	* Calculates the gradient of the function at a given point
 	* 
 	* \param x Point
 	*/
-	virtual Vector grad(const Vector& x) const = 0;
+	virtual VectorXd grad(const VectorXd& x) const = 0;
 
 	/**
 	* Calculates the i-th row of the Hessian matrix (using numerical differentiation) at a given point
@@ -38,7 +38,7 @@ public:
 	* \param i Row number
 	* \param a Domain of the function
 	*/
-	Vector hessian_approx(const Vector& x, int i, const RectArea& a) const;
+	VectorXd hessian_approx(const VectorXd& x, Index i, const RectArea& a) const;
 
 	/**
 	* Calculates the Hessian matrix (using numerical differentiation) at a given point
@@ -46,7 +46,7 @@ public:
 	* \param x Point
 	* \param a Domain of the function
 	*/
-	Matrix hessian_approx(const Vector& x, const RectArea& a) const;
+	MatrixXd hessian_approx(const VectorXd& x, const RectArea& a) const;
 
 	size_t get_dim() const;
 	

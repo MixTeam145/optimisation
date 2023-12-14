@@ -22,7 +22,7 @@ public:
 	* \param f Objective function
 	* \param trajectory Sequence of approximations
 	*/
-	virtual bool condition(const Function* f, const std::vector<Vector>& trajectory) const = 0;
+	virtual bool condition(const Function* f, const std::vector<VectorXd>& trajectory) const = 0;
 protected:
 	/**
 	* Maximum number of iterations

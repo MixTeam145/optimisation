@@ -10,14 +10,14 @@ McCormickFunction::~McCormickFunction()
 
 }
 
-double McCormickFunction::eval(const Vector& x) const
+double McCormickFunction::eval(const VectorXd& x) const
 {
 	return sin(x[0] + x[1]) + (x[0] - x[1]) * (x[0] - x[1]) - 1.5 * x[0] + 2.5 * x[1] + 1;
 }
 
-Vector McCormickFunction::grad(const Vector& x) const
+VectorXd McCormickFunction::grad(const VectorXd& x) const
 {
-	Vector g(2);
+	VectorXd g(2);
 	g[0] = -1.5 + 2 * x[0] - 2 * x[1] + cos(x[0] + x[1]);
 	g[1] = 2.5 - 2 * x[0] + 2 * x[1] + cos(x[0] + x[1]);
 	return g;

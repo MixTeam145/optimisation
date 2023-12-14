@@ -10,7 +10,7 @@ Optimizer::~Optimizer()
 
 }
 
-void Optimizer::optimize(const Vector& start_point)
+void Optimizer::optimize(const VectorXd& start_point)
 {
 	current_point = start_point;
 	trajectory.push_back(start_point);
@@ -34,7 +34,7 @@ void Optimizer::set_criterion(StopCriterion* new_criterion)
 	trajectory.shrink_to_fit();
 }
 
-void Optimizer::set_domain(const Vector& min_point, const Vector& max_point)
+void Optimizer::set_domain(const VectorXd& min_point, const VectorXd& max_point)
 {
 	domain.set_area(min_point, max_point);
 }
@@ -43,5 +43,7 @@ void Optimizer::set_default_domain()
 {
 	trajectory.clear();
 	trajectory.shrink_to_fit();
-	domain.set_area(Vector(f->get_dim(), -1), Vector(f->get_dim(), 1));
+	VectorXd min_point = VectorXd::Constant(f->get_dim(), -1),
+		max_point = VectorXd::Constant(f->get_dim(), 1);
+	domain.set_area(min_point, max_point);
 }
