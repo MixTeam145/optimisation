@@ -28,6 +28,8 @@ public:
 	);
 
 	~StochasticOptimizer();
+
+	void set_seed(unsigned int new_seed) { generator.seed(new_seed); }
 private:
 	/**
 	* Generates a uniformly distributed point in given area
