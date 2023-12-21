@@ -37,7 +37,6 @@ VectorXd StochasticOptimizer::random_point(const RectArea& cubic_area)
 
 void StochasticOptimizer::next_point()
 {
-	//VectorXd vdelta(current_point.size(), current_delta);
 	VectorXd vdelta = Eigen::VectorXd::Constant(current_point.size(), current_delta);
 	neighbourhood.set_area(current_point - vdelta, current_point + vdelta);
 	neighbourhood = domain.intersect(neighbourhood);

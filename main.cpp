@@ -50,7 +50,7 @@ int main()
 
 		} while (key != 1 && key != 2 && key != 3);
 
-		std::cout << "Select stop criteria:\n"
+		std::cout << "Select stop criterion:\n"
 			<< "1. Abs value of the gradient\n"
 			<< "2. Number of iterations\n"
 			<< "< ";
@@ -118,7 +118,7 @@ int main()
 					if (radius <= 0)
 						std::cout << "Incorrect radius (must be > 0)\n> ";
 				} while (radius <= 0);
-				std::cout << "Enter radius reduction coefficient per iteration\n> ";
+				std::cout << "Enter radius reduction coefficient\n> ";
 				double coeff;
 				do {
 					std::cin >> coeff;
